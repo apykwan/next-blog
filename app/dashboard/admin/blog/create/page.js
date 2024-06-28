@@ -15,16 +15,64 @@ export default function AdminBlogCreate() {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
-
   const router = useRouter();
+
   // image upload to cloudinary
-  const uploadImage = async(e) => {
+  async function uploadImage(e) {
     e.preventDefault();
+    const file = e.target.files[0];
+    if (file) {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET);
+
+      //upload to cloudinary
+
+      try {
+        const response = await fetch(process.env.CLOUDINARY_URL, {
+          method: "POST",
+          body: formData        
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setImage(data.secure_url);
+        }
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+      }
+    }
   };
   
   // submit to create blog api
   async function handleSubmit(e) {
+    e.preventDefault();
 
+    try {
+      setLoading(true);
+      const response = await fetch(`${process.env.API}/admin/blog`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          content,
+          category,
+          image
+        })
+      });
+      if (response.ok) {
+        router.push("/dashboard/admin");
+        toast.success("blog created successfully");
+      }
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      toast.error(err);
+      setLoading(false);
+    }
   }
   // return jsx/ blog create form
   return (
@@ -62,6 +110,33 @@ export default function AdminBlogCreate() {
               onChange={e => setCategory(e.target.value)}
               className="form-control p-2" 
             />
+          </div>
+
+          {image && (
+            <img src={image} alt="preview image" style={{ width: "100px" }} />
+          )}
+
+          <div className="form-group my-4 d-flex justify-content-between">
+            <button className="btn btn-outline-secondary">
+              <label htmlFor="upload-btn" className="mt-2 pointer">
+                {loading ? "Uploading..." : "Upload Image"}
+              </label>
+              <input 
+                id="upload-btn" 
+                type="file" 
+                accept="image/*" 
+                onChange={uploadImage} 
+                hidden
+              />
+            </button>
+
+            <button 
+              className="btn text-light bg-primary" 
+              disabled={loading}
+              onClick={handleSubmit}
+            >
+              Save
+            </button>
           </div>
           
         </div>
