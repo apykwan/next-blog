@@ -12,6 +12,9 @@ const nextConfig = {
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     CLOUDINARY_UPLOAD_PRESET: process.env.CLOUDINARY_UPLOAD_PRESET,
     CLOUDINARY_URL: process.env.CLOUDINARY_URL
+  },
+  images: {
+    domains: ['cdn.pixabay.com', 'res.cloudinary.com']
   }
 };
 
