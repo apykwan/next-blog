@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import dayjs from 'dayjs';
+import { FaHeart } from "react-icons/fa";
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
@@ -10,7 +11,7 @@ const defaultImg = "https://cdn.pixabay.com/photo/2012/04/24/12/29/no-symbol-397
 export default function BLogCard({ blog }) {
   return (
     <div className="card mb-4">
-      <div style={{position: "relative", width: "100%", height: "200px" }} >
+      <div style={{ position: "relative", width: "100%", height: "200px" }} >
         <Image 
           src={blog?.image || defaultImg} 
           fill
@@ -39,12 +40,12 @@ export default function BLogCard({ blog }) {
 
         <div className="card-footer d-flex justify-content-between">
           <small className="text-muted">
+            <FaHeart className="mr-1 text-danger" />
             {blog?.likes?.length} likes
           </small>
           <small className="text-muted">
             Posted: {dayjs(blog.createdAt).fromNow()}
           </small>
-      
         </div>
       </div>
     </div>
