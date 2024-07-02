@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { FaHeart } from "react-icons/fa";
+
+import BlogLike from '@/components/blogs/BlogLike';
 
 dayjs.extend(relativeTime);
 const defaultImg = "https://cdn.pixabay.com/photo/2012/04/24/12/29/no-symbol-39767_1280.png";
@@ -26,7 +27,7 @@ export default async function BlogViewPage({ params }) {
     <main>
       <div className="container mb-5">
         <div className="card">
-          <div style={{ position: "relative", height: "300px"  }} >
+          <div style={{ position: "relative", height: "300px" }} >
             <Image 
               src={blog?.image || defaultImg} 
               fill
@@ -42,7 +43,7 @@ export default async function BlogViewPage({ params }) {
             </h5>
 
             <div className="card-text">
-              <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+              <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
             </div>
             <div className="card-footer d-flex justify-content-between">
               <small className="text-muted">Category: {blog.category}</small>
@@ -51,10 +52,7 @@ export default async function BlogViewPage({ params }) {
               </small>
             </div>
             <div className="card-footer d-flex justify-content-between">
-              <small className="text-muted">
-                <FaHeart className="mr-1 text-danger" />
-                {blog?.likes?.length} likes
-              </small>
+              <BlogLike blog={blog} />
               <small className="text-muted">
                 Posted: {dayjs(blog.createdAt).fromNow()}
               </small>

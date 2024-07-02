@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import dayjs from 'dayjs';
-import { FaHeart } from "react-icons/fa";
 import relativeTime from 'dayjs/plugin/relativeTime';
+
+import BlogLike from '@/components/blogs/BlogLike';
 
 dayjs.extend(relativeTime);
 
@@ -39,10 +40,7 @@ export default function BLogCard({ blog }) {
         </div>
 
         <div className="card-footer d-flex justify-content-between">
-          <small className="text-muted">
-            <FaHeart className="mr-1 text-danger" />
-            {blog?.likes?.length} likes
-          </small>
+          <BlogLike blog={blog} />
           <small className="text-muted">
             Posted: {dayjs(blog.createdAt).fromNow()}
           </small>
