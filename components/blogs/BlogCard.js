@@ -16,6 +16,7 @@ export default function BLogCard({ blog }) {
         <Image 
           src={blog?.image || defaultImg} 
           fill
+          sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ objectFit: 'cover' }} 
           className="card-img-top"
           alt={blog.title}

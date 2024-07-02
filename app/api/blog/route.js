@@ -31,10 +31,10 @@ export async function GET(req) {
     return NextResponse.json({ 
       blogs, 
       currentPage, 
-      totalPages: Math.ceil(totalBlogs / pageSize ),
+      totalPages: Math.ceil(totalBlogs / pageSize),
     }, {
       status: 200
-    })
+    });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ err: err.message }, { status: 500 });

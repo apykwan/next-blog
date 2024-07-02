@@ -3,7 +3,7 @@ import Link from "next/link";
 import BlogList from '@/components/blogs/BlogList';
 import * as actions from '@/actions';
 
-export default async function Home({ searchParams = { page: "1" } }) {
+export default async function AdminBlogsList({ searchParams = { page: "1" } }) {
   const data = await actions.getBlogs(searchParams);
   // console.log('data in home page => ', data);
   const { blogs, currentPage, totalPages } = data;
@@ -12,8 +12,20 @@ export default async function Home({ searchParams = { page: "1" } }) {
 
   return (
     <div className="container">
-      <p className="lead text-primary text-center">Home</p>
-      <BlogList blogs={blogs} />
+      <p className="lead text-primary text-center">Latest Blogs</p>
+      {/* <BlogList blogs={blogs} /> */}
+
+      {blogs.map(blog => (
+        <div key={blog._id} className="d-flex justify-content-between">
+          <p>{blog.title}</p>
+          <Link 
+            className="text-info" 
+            href={`/dashboard/admin/update/${blog.slug}`}
+          >
+            Update
+          </Link>
+        </div>
+      ))}
 
       <div className="d-flex justify-content-center">
         <nav aria-label="Page navigation">

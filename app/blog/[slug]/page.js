@@ -27,10 +27,11 @@ export default async function BlogViewPage({ params }) {
     <main>
       <div className="container mb-5">
         <div className="card">
-          <div style={{ position: "relative", height: "300px" }} >
+          <div style={{ position: "relative", width: "100%", height: "300px" }} >
             <Image 
               src={blog?.image || defaultImg} 
               fill
+              sizes=""
               style={{ objectFit: 'cover' }} 
               className="card-img-top"
               alt={blog.title}

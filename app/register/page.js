@@ -43,7 +43,6 @@ export default function Register() {
       setLoading(false);
       toast.error("An error occurred. Try again.")
     }
-
   }
 
   return (
