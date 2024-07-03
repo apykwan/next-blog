@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react';
 import { Toaster } from 'react-hot-toast';
 
 import TopNav from '@/components/TopNav';
+import { SearchProvider } from '@/context/search';
 
 import "./globals.css";
 import "bootstrap-material-design/dist/css/bootstrap-material-design.min.css";
@@ -18,9 +19,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <SessionProvider>
-          <Toaster />
-          <TopNav />
-          {children}
+          <SearchProvider>
+            <Toaster />
+            <TopNav />
+            {children}
+          </SearchProvider>
         </SessionProvider>
       </body>
     </html>
