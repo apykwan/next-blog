@@ -3,8 +3,9 @@ import Link from "next/link";
 import BlogList from '@/components/blogs/BlogList';
 import * as actions from '@/actions';
 
-export default async function Home({ searchParams = { page: "1" } }) {
-  const data = await actions.getBlogs(searchParams);
+export default async function Home({ searchParams }) {
+  const queryPage = searchParams?.page || "1";
+  const data = await actions.getBlogs({ page: queryPage });
   // console.log('data in home page => ', data);
   const { blogs, currentPage, totalPages } = data;
   const hasPreviousPage = currentPage > 1;
