@@ -20,7 +20,7 @@ export default function AdminBlogUpdate({ params }) {
 
   async function getBlog() {
     try {
-      const getBlogAPI = `${process.env.API}/blog/${params.slug}`
+      const getBlogAPI = `${process.env.NEXT_PUBLIC_API_URL}/blog/${params.slug}`
       const response = await fetch(getBlogAPI);
       if (!response.ok) throw new Error("Failed to fetch blog");
 
@@ -76,7 +76,7 @@ export default function AdminBlogUpdate({ params }) {
     if (!id) return;
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.API}/admin/blog/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/blog/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -103,7 +103,7 @@ export default function AdminBlogUpdate({ params }) {
     if (!id) return;
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.API}/admin/blog/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/blog/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {

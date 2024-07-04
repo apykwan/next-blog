@@ -10,7 +10,7 @@ dayjs.extend(relativeTime);
 const defaultImg = "https://cdn.pixabay.com/photo/2012/04/24/12/29/no-symbol-39767_1280.png";
 
 async function getBlog(slug) {
-  const slugAPI = `${process.env.API}/blog/${slug}`;
+  const slugAPI = `${process.env.NEXT_PUBLIC_API_URL}/blog/${slug}`;
   const response = await fetch(slugAPI, {
     method: "GET",
     next: { reavalidate: 1 }

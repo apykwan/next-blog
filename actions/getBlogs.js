@@ -8,7 +8,7 @@ export async function getBlogs(searchParams) {
   };
 
   const searchQuery =  new URLSearchParams(urlParams).toString();
-  const searchQueryAPI = `${process.env.api}/blog?${searchQuery}`;
+  const searchQueryAPI = `${process.env.NEXT_PUBLIC_API_URL}/blog?${searchQuery}`;
   const response = await fetch(searchQueryAPI, {
     method: "GET",
     headers: {

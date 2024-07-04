@@ -15,7 +15,7 @@ export function SearchProvider ({ children }) {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.API}/search?searchQuery=${searchQuery}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search?searchQuery=${searchQuery}`);
       const data = await response.json();
 
       router.push(`/search?searchQuery=${searchQuery}`);

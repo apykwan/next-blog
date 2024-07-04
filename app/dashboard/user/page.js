@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import BlogList from '@/components/blogs/BlogList';
 
-const fetchBlogsAPI = `${process.env.API}/user/liked-blogs`;
+const fetchBlogsAPI = `${process.env.NEXT_PUBLIC_API_URL}/user/liked-blogs`;
 
 export default function UserDashboard() {
   const [likedBlogs, setLikedBlogs] = useState([]);

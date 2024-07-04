@@ -53,7 +53,7 @@ export default function AdminBlogCreate() {
 
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.API}/admin/blog`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/blog`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

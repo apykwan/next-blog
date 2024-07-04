@@ -14,7 +14,7 @@ export default function SearchPage() {
 
   async function fetchResultsOnLoad () {
     try {
-      const response = await fetch(`${process.env.API}/search?searchQuery=${query}`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search?searchQuery=${query}`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch search results");

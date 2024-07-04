@@ -28,7 +28,7 @@ export default function BlogLike({ blog }) {
         }
       } else {
         // like
-        const response = await fetch(`${process.env.API}/user/blog/like`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/blog/like`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export default function BlogLike({ blog }) {
 
   const handleUnlike = async () => {
     try {
-      const response = await fetch(`${process.env.API}/user/blog/unlike`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/blog/unlike`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
