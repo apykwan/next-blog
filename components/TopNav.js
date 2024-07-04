@@ -13,7 +13,7 @@ export default function TopNav() {
     <nav className="nav shadow p-2 justify-content-between mb-3">
       <Link className="nav-link" href="/">BLOG</Link>
 
-      <form className="d-flex" role="search" onSubmit={fetchSearchResults}>
+      <form className="d-flex mb-0" role="search" onSubmit={fetchSearchResults}>
         <input 
           type="search" 
           className="form-control" 
