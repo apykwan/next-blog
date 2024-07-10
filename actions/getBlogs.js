@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 
 export async function getBlogs(searchParams) {
   const urlParams = {
-    page: searchParams.page,
+    page: searchParams.page || 1,
   };
 
   const searchQuery =  new URLSearchParams(urlParams).toString();
